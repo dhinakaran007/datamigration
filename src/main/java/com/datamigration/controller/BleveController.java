@@ -18,7 +18,7 @@ import com.datamigration.model.BleveRequestModel;
 
 @RestController
 public class BleveController {
-    static final String BASE_URL = "https://***.radproinfotech.com:****";
+    static final String BASE_URL = "https://***.r*dp**********************.com:****";
 
     @GetMapping("/api/getlatlong?address={addressString}")
     public static ResponseEntity<String> testReqEntity(@RequestParam String addressString) {
