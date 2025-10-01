@@ -12,13 +12,27 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.datamigration.config.service.ConfigLoader;
 import com.datamigration.model.BleveApiResponseModel;
 import com.datamigration.model.BleveInsertApiModel;
 import com.datamigration.model.BleveRequestModel;
 
 @RestController
 public class BleveController {
-    static final String BASE_URL = "https://***.r*dp**********************.com:****";
+    
+    static final String BASE_URL;
+
+    static {
+        String tempUrl;
+        try {
+            tempUrl = ConfigLoader.returnUrl("E:/datamigration/src/main/java/com/datamigration/cache/config.json");
+        } catch (Exception e) {
+            e.printStackTrace();
+            tempUrl = "";
+        }
+
+        BASE_URL = tempUrl;
+    }
 
     @GetMapping("/api/getlatlong?address={addressString}")
     public static ResponseEntity<String> testReqEntity(@RequestParam String addressString) {
